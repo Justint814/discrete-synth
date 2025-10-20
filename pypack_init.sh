@@ -7,6 +7,10 @@
 #           Ran from root package directory.
 #############################################
 
+# Global Variables.
+license_dir="/Users/justintraywick/Coding/pypackage_template"
+
+
 # Get package directory and name as variables.
 
 root_dir=$(echo | pwd)  # Get package directory as variable.
@@ -57,6 +61,6 @@ echo -e "...done. \n"
 
 # Make readme and license files.
 touch ${root_dir}/README.md
-cp /Users/justintraywick/Coding/pypackage_template/LICENSE ./
+cp ${license_dir}/LICENSE ./
 
 echo "Python package structure initialization complete."
