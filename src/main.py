@@ -21,13 +21,20 @@ data_2 = data * .75
 
 def play(signal, samplerate):
     press = False
+    loop = True
     loops = 0
      
+    def on_press(event):
+        nonlocal press
+        press = True
+        loop = False
+
     def on_release(event):
         nonlocal press
         press = False
 
-    keyboard.wait("space")
+    while loop == True:
+        keyboard.on_press_key("space", on_press)
 
     with sd.OutputStream(samplerate=samplerate, channels=1) as stream:
         while press == True:

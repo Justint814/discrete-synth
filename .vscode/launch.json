@@ -1,9 +1,14 @@
 {
-    "name": "run-python-script-with-sudo",
-    "type": "python",
-    "request": "launch",
-    "cwd": "${workspaceFolder}",
-    "program": "${workspaceFolder}/src/main.py",
-    "console": "ixternalTerminal",
-    "sudo": true
+    "configurations": [
+        {
+    
+            "name": "run-python-script-with-sudo",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "sudo": true
+        }
+    ]
 }
