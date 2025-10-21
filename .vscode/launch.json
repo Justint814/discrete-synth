@@ -1,0 +1,9 @@
+{
+    "name": "run-python-script-with-sudo",
+    "type": "python",
+    "request": "launch",
+    "cwd": "${workspaceFolder}",
+    "program": "${workspaceFolder}/src/main.py",
+    "console": "ixternalTerminal",
+    "sudo": true
+}
