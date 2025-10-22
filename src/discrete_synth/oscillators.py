@@ -46,14 +46,14 @@ class Oscillator:
 
 # Waveforms.
 
-    def sine(self, freq: float, amplitude: float = 1):
-        period = 1 / freq
-        omega = 2 * self.PI * freq
+    def sine(self, frequency: float, amplitude: float = 1):
+        period = 1 / frequency
+        omega = 2 * self.PI * frequency
 
         time_arr = np.linspace(0., period, int(period * self.SAMPLE_RATE), endpoint=False)
         signal = (self.MAX_AMPLITUDE * amplitude * np.sin(omega * time_arr)).astype(np.int16)  # Define signal as 16bit integer
 
-        return signal
+        return signal, frequency
 
 
 # Saving.
