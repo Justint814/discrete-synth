@@ -17,29 +17,14 @@ file_path = my_osc.save_wav("432_sine.wav", my_sinewave)
 data, samplerate = sf.read(file_path, dtype="float32")
 data_2 = data * .75
 
-
-
 def play(signal, samplerate):
-    press = False
-    loop = True
-    loops = 0
-     
-    def on_press(event):
-        nonlocal press
-        press = True
-        loop = False
+    key = 'space'
 
-    def on_release(event):
-        nonlocal press
-        press = False
-
-    while loop == True:
-        keyboard.on_press_key("space", on_press)
-
-    with sd.OutputStream(samplerate=samplerate, channels=1) as stream:
-        while press == True:
-            keyboard.on_release_key("space", on_release)
-            stream.write(signal.astype(np.float32))
-
+    while True:
+        keyboard.wait(key)
+        print('pressed')
+        with sd.OutputStream(samplerate=samplerate, channels=1) as stream:
+            while keyboard.is_pressed(key) == True:
+                stream.write(signal.astype(np.float32))
 
 play(data, samplerate)
