@@ -7,19 +7,19 @@ import time
 print("initializing...")
 
 key = 'space'
-sample_rate = float(48000)  # Hz
-period = float(1 / sample_rate) # s
+sample_rate = 4096  # Hz
 
-my_oscillators = [Oscillator(200, 1)]
-sample_osc = Oscillator(350, 1)
+my_oscillators = [Oscillator(100, 1)]
+sample_osc = Oscillator(100, 1)
 
-my_envelope = Envelope(50E-3, 10E-3, 0.7, 10E-3)
-my_filter = Filter(100, 300, sample_rate)
+my_envelope = Envelope(50E-2, 10E-2, 0.7, 10E-1, sample_rate)
+my_filter = Filter(900, 1100, sample_rate)
 
 my_synth = Synth(my_oscillators, my_envelope, my_filter, sample_rate)
 
 print("starting loop")
 
+ADSR_arr = []
 with sd.OutputStream(samplerate=sample_rate, channels=1) as stream:
     while True:
 
@@ -31,5 +31,9 @@ with sd.OutputStream(samplerate=sample_rate, channels=1) as stream:
         stream.write(my_synth.step())
 
 
-
+        my_synth.keyPressedLast = my_synth.keyPressed
         
+
+
+#ADSR_arr = np.array(ADSR_arr)
+#np.save('/Users/justintraywick/Coding/discrete-synth/discrete-synth/data/ADSR_arr.npy', ADSR_arr, allow_pickle=True)
